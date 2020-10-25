@@ -14,7 +14,7 @@
             $html = "<div class = 'previewCategories'>";
 
             while($row = $query -> fetch(PDO::FETCH_ASSOC)) {
-                $html .= $this -> getCategoryHtml($row, $title, true, true);
+                $html .= $this -> getCategoryHtml($row, null, true, true);
             }
 
             return $html . "</div>";
@@ -58,7 +58,7 @@
                 $entitiesHtml .= $previewProvider -> createEntityPreviewSquare($entity);
             }
             return "<div class = 'category'>
-                        <a href = 'entity.php?id=$categoryId'>
+                        <a href = 'category.php?id=$categoryId'>
                             <h3>$title</h3>
                         </a>
 

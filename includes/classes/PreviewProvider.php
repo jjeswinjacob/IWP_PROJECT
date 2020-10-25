@@ -19,17 +19,17 @@
 
             // TODO: ADD SUBTITLE
 
-            return "<div class = 'previewContainer'>
+            return "<main role = 'previewContainer'>
                         <img src = '$thumbnail' class = 'previewImage' hidden>
                         <video autoplay muted class = 'previewVideo' onended = 'previewEnded()'>
                             <source src = '$preview' type = 'video/mp4'>
                         </video>
 
-                        <div class = 'previewOverlay'>
+                        <main role = 'previewOverlay'>
                             <div class = 'mainDetails'>
                                 <h3> $name </h3>
 
-                                <div class = 'button'>
+                                <main role = 'button'>
                                     <button> <i class='fas fa-play'></i> Play</button>
                                     <button onclick = 'volumeToggle(this)'> <i class='fas fa-volume-mute'></i></button>
                                 </div>
