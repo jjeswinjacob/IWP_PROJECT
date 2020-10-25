@@ -1,15 +1,15 @@
-div {	
-  animation-name: example;	
-  animation-duration: 5s;	
-  animation-timing-function: linear;	
-  animation-delay: 2s;	
-  animation-iteration-count: infinite;	
-  animation-direction: alternate;	
-}	
-@keyframes example {	
-  0%   {background-color: red; left:0px;}	
-  50%  {background-color: yellow; left:200px;}	
-  100% {background-color: red; left:0px;}	
+div {
+  animation-name: example;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes example {
+  0%   {background-color: yellow; left:0px;}
+  50%  {background-color: orange; left:200px;}
+  100% {background-color: yellow; left:0px;}
 }
 
 html,
@@ -158,7 +158,7 @@ a {
   color: #fff;
   font-size: 40px;
   margin: 15px 0;
-  position: absolute;	
+  position: absolute;
   top: -50px;
 }
 
@@ -282,115 +282,183 @@ button i {
   border: none;
 }
 
-.view {	
-  width: 316px;	
-  height: 216px;	
-  margin: 10px;	
-  float: left;	
-  position: relative;	
-  border: 8px solid #fff;	
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.05);	
-  background: #333;	
-  perspective: 500px;	
-}	
-.view .slice{	
-  width: 60px;	
-  height: 100%;	
-  z-index: 100;	
-  transform-style: preserve-3d;	
-  transform-origin: left center;	
-  transition: transform 150ms ease-in-out;	
-  	
-}	
-.view div.view-back{	
-  width: 50%;	
-  height: 100%;	
-  position: absolute;	
-  right: 0;	
-  background: #666;	
-  z-index: 0;	
-}	
-.view-back span {	
-  display: block;	
-  float: right;	
-  padding: 5px 20px 5px;	
-  width: 100%;	
-  text-align: right;	
-  font-size: 16px;	
-  color: rgba(255,255,255,0.6);	
-}	
-.view-back span:first-child {	
-  padding-top: 20px;	
-}	
-.view-back a {	
-  display: bock;	
-  font-size: 18px;	
-  color: rgba(255,255,255,0.4);	
-  position: absolute;	
-  right: 15px;	
-  bottom: 15px;	
-  border: 2px solid rgba(255,255,255,0.3);	
-  border-radius: 50%;	
-  width: 30px;	
-  height: 30px;	
-  line-height: 22px;	
-  text-align: center;	
-  font-weight: 700;	
-}	
-.view-back a:hover {	
-  color: #fff;	
-  border-color: #fff;	
-}	
-.view-back span[data-icon]:before {	
-    content: attr(data-icon);	
-    font-family: 'icons';	
-    color: #aaa;	
-  color: rgba(255,255,255,0.2);	
-  text-shadow: 0 0 1px rgba(255,255,255,0.2);	
-  padding-right: 5px;	
-}	
-.view .s2, 	
-.view .s3, 	
-.view .s4, 	
-.view .s5 {	
-  transform: translateX(60px);	
-}	
-.view .s1 {	
-  background-position: 0px 0px;	
-}	
-.view .s2 {	
-  background-position: -60px 0px;	
-}	
-.view .s3 {	
-  background-position: -120px 0px;	
-}	
-.view .s4 {	
-  background-position: -180px 0px;	
-}	
-.view .s5 {	
-  background-position: -240px 0px;	
-}	
-.view .overlay {	
-  width: 60px;	
-  height: 100%;	
-  opacity: 0;	
-  position: absolute;	
-  transition: opacity 150ms ease-in-out;	
-}	
-.view:hover .overlay {	
-  opacity: 1;	
-}	
-.view img {	
-  position: absolute;	
-  z-index: 0;	
-  transition: left 0.3s ease-in-out;	
-}	
-.view {	
-  overflow: hidden;	
-}	
-.view:hover img {	
-  left: -85px;	
-}	
-.view div.view-back {	
-  background: #666;	
+.view {
+  width: 316px;
+  height: 216px;
+  margin: 10px;
+  float: left;
+  position: relative;
+  border: 8px solid #fff;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+  background: #333;
+  perspective: 500px;
+}
+.view .slice{
+  width: 60px;
+  height: 100%;
+  z-index: 100;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 150ms ease-in-out;
+
+}
+.view div.view-back{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background: #666;
+  z-index: 0;
+}
+.view-back span {
+  display: block;
+  float: right;
+  padding: 5px 20px 5px;
+  width: 100%;
+  text-align: right;
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+}
+.view-back span:first-child {
+  padding-top: 20px;
+}
+.view-back a {
+  display: bock;
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 22px;
+  text-align: center;
+  font-weight: 700;
+}
+.view-back a:hover {
+  color: #fff;
+  border-color: #fff;
+}
+.view-back span[data-icon]:before {
+    content: attr(data-icon);
+    font-family: 'icons';
+    color: #aaa;
+  color: rgba(255,255,255,0.2);
+  text-shadow: 0 0 1px rgba(255,255,255,0.2);
+  padding-right: 5px;
+}
+.view .s2,
+.view .s3,
+.view .s4,
+.view .s5 {
+  transform: translateX(60px);
+}
+.view .s1 {
+  background-position: 0px 0px;
+}
+.view .s2 {
+  background-position: -60px 0px;
+}
+.view .s3 {
+  background-position: -120px 0px;
+}
+.view .s4 {
+  background-position: -180px 0px;
+}
+.view .s5 {
+  background-position: -240px 0px;
+}
+.view .overlay {
+  width: 60px;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 150ms ease-in-out;
+}
+.view:hover .overlay {
+  opacity: 1;
+}
+.view img {
+  position: absolute;
+  z-index: 0;
+  transition: left 0.3s ease-in-out;
+}
+.view {
+  overflow: hidden;
+}
+.view:hover img {
+  left: -85px;
+}
+.view div.view-back {
+  background: #666;
+}
+
+.button{
+  background-color: #4285f4;
+  color: #fff;
+  height: 36px;
+  width: 88px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.otpheader{
+  color: #1f808a;
+  text-align: center;
+}
+
+.otpbutton{
+  background-color: rgba(51, 51, 51, 0.4);
+  color: #fff;
+  border: none;
+  min-width: 150px;
+  padding: 0 38px;
+  height: 50px;
+  max-height: 50px;
+  font-size: 18px;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+
+.reotpbutton{
+  position: relative;
+  left: 220px;
+  top: -49.5px;
+}
+
+.sendotpbutton{
+  position: relative;
+  left: 45px;
+  top: 17px;
+}
+
+.captcha{
+  width: 150px;
+
+}
+
+
+
+.refresh{
+  background-color: rgba(51, 51, 51, 0.4);
+  color: #fff;
+  border: none;
+  height: 20px;
+  font-size: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+  left: 160px;
+  top: -61.5px;
+  background-color:
 }

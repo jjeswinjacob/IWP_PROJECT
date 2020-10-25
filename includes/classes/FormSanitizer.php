@@ -13,6 +13,11 @@
             $inputText = str_replace(" ", "", $inputText);
             return $inputText;
         }
+        public static function sanitizeFormNumber($inputText) {
+            $inputText = strip_tags($inputText); // Removes HTML tags
+            $inputText = str_replace(" ", "", $inputText);
+            return $inputText;
+        }
 
         public static function sanitizeFormPassword($inputText) {
             $inputText = strip_tags($inputText); // Removes HTML tags

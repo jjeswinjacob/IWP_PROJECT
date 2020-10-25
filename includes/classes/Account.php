@@ -7,15 +7,18 @@
             $this->con = $con;
         }
 
-        public function register($fn, $ln, $un, $em, $em2, $pw, $pw2) {
+        public function register($fn, $ln, $un, $pnum, $em, $em2, $pw, $pw2,$c) {
             $this -> validateFirstName($fn);
             $this -> validateLastName($ln);
             $this -> validateUsername($un);
+            $this -> validateNumber($pnum);
             $this -> validateEmails($em, $em2);
             $this -> validatePasswords($pw, $pw2);
+            $this -> validateCaptcha($c);
+
 
             if(empty($this -> errorArray)) {
-                return $this -> insertUserDetails($fn, $ln, $un, $em, $pw);
+                return $this -> insertUserDetails($fn, $ln, $un, $pnum, $em, $pw);
             }
 
             return false;
@@ -26,7 +29,7 @@
 
             $query = $this -> con -> prepare("SELECT * FROM users WHERE username = :un AND password = :pw");
             $query -> bindValue(":un", $un);
-            $query -> bindValue(":pw", $pw); 
+            $query -> bindValue(":pw", $pw);
             $query -> execute();
 
             if($query -> rowCount() == 1) {
@@ -36,15 +39,16 @@
             return false;
         }
 
-        private function insertUserDetails($fn, $ln, $un, $em, $pw) {
+        private function insertUserDetails($fn, $ln, $un, $pnum, $em, $pw) {
             $pw = hash("sha512", $pw);
-            $query = $this -> con -> prepare("INSERT INTO users (firstName, lastName, username, email, password)
-                                                VALUES (:fn, :ln, :un, :em, :pw)");
+            $query = $this -> con -> prepare("INSERT INTO users (firstName, lastName, username, phone, email, password)
+                                                VALUES (:fn, :ln, :un, :pnum, :em, :pw)");
             $query -> bindValue(":fn", $fn);
             $query -> bindValue(":ln", $ln);
             $query -> bindValue(":un", $un);
+            $query -> bindValue(":pnum", $pnum);
             $query -> bindValue(":em", $em);
-            $query -> bindValue(":pw", $pw); 
+            $query -> bindValue(":pw", $pw);
 
             return $query -> execute();
         }
@@ -80,6 +84,21 @@
             }
         }
 
+        private function validateNumber($pnum) {
+            if(strlen($pnum) != 10) {
+                array_push($this -> errorArray, Constants::$numberCharacters);
+                return;
+            }
+
+            $query = $this -> con -> prepare("SELECT * FROM users WHERE phone = :pnum");
+            $query -> bindValue(":pnum", $pnum);
+
+            $query -> execute();
+            if($query -> rowCount() != 0) {
+                array_push($this -> errorArray, Constants::$numberTaken);
+            }
+        }
+
         private function validateEmails($em, $em2) {
             if($em != $em2) {
                 array_push($this -> errorArray, Constants::$emailsDontMatch);
@@ -109,6 +128,11 @@
             if(strlen($pw) < 5 || strlen($pw) > 25) {
                 array_push($this -> errorArray, Constants::$passwordLength);
             }
+        }
+        private function validateCaptcha($c){
+          if ($c != $_COOKIE['captcha']){
+            array_push($this -> errorArray, Constants:: $captchaFailed);
+          }
         }
 
         public function getError($error) {

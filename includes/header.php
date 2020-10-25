@@ -14,7 +14,7 @@
     }
 
     $userLoggedIn = $_SESSION["userLoggedIn"];
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 600)) 
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 60000)) 
     {
         session_unset();
         session_destroy();
